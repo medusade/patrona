@@ -13,15 +13,13 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Main.cpp
+///   File: Base.cpp
 ///
 /// Author: $author$
 ///   Date: 9/23/2016
 ///////////////////////////////////////////////////////////////////////
+#include "patrona/cpp/xos/base/Base.hpp"
 
 namespace patrona {
-namespace console {
 
-} // namespace console
 } // namespace patrona
-

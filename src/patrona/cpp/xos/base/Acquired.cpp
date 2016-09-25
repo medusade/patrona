@@ -13,15 +13,22 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Main.cpp
+///   File: Acquired.cpp
 ///
 /// Author: $author$
-///   Date: 9/23/2016
+///   Date: 9/24/2016
 ///////////////////////////////////////////////////////////////////////
 
 namespace patrona {
-namespace console {
 
-} // namespace console
+///////////////////////////////////////////////////////////////////////
+///  Class: AcquiredT
+///////////////////////////////////////////////////////////////////////
+
 } // namespace patrona
+
+
+
+
+        
 

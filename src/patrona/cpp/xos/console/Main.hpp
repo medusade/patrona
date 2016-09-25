@@ -21,9 +21,11 @@
 #ifndef _PATRONA_CPP_XOS_CONSOLE_MAIN_HPP
 #define _PATRONA_CPP_XOS_CONSOLE_MAIN_HPP
 
-#if !defined(_PATRONA_CPP_XOS_BASE_BASE_HPP)
 #include "patrona/cpp/xos/base/Base.hpp"
-#endif // !defined(_PATRONA_CPP_XOS_BASE_BASE_HPP)
+#include <iostream>
+
+namespace patrona {
+namespace console {
 
 typedef ImplementBase MainTImplements;
 typedef Base MainTExtends;
@@ -244,4 +246,7 @@ protected:
 };
 typedef MainT<> Main;
 
-#endif // _PATRONA_CPP_XOS_CONSOLE_MAIN_HPP 
+} // namespace console
+} // namespace patrona
+
+#endif // _PATRONA_CPP_XOS_CONSOLE_MAIN_HPP

@@ -21,9 +21,9 @@
 #ifndef _PATRONA_CPP_XOS_BASE_LOCKED_HPP
 #define _PATRONA_CPP_XOS_BASE_LOCKED_HPP
 
-#if !defined(_PATRONA_CPP_XOS_BASE_BASE_HPP)
 #include "patrona/cpp/xos/base/Base.hpp"
-#endif // !defined(_PATRONA_CPP_XOS_BASE_BASE_HPP)
+
+namespace patrona {
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
@@ -60,14 +60,14 @@ inline const char* LockStatusToChars(LockStatus status) {
     return "Unknown";
 }
 
-typedef ImplementBase LockExceptionImplements;
-typedef Base LockExceptionExtends;
+typedef ImplementBase LockExceptionTImplements;
+typedef Base LockExceptionTExtends;
 ///////////////////////////////////////////////////////////////////////
 ///  Class: LockExceptionT
 ///////////////////////////////////////////////////////////////////////
 template
-<class TImplements = LockExceptionImplements,
- class TExtends = LockExceptionExtends>
+<class TImplements = LockExceptionTImplements,
+ class TExtends = LockExceptionTExtends>
 
 class _EXPORT_CLASS LockExceptionT: virtual public TImplements, public TExtends {
 public:
@@ -158,4 +158,6 @@ protected:
 };
 typedef LockerT<> Locker;
 
-#endif // _PATRONA_CPP_XOS_BASE_LOCKED_HPP 
+} // namespace patrona
+
+#endif // _PATRONA_CPP_XOS_BASE_LOCKED_HPP
