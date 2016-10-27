@@ -139,6 +139,14 @@ public:
     typedef TAcquireException AcquireException;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    AcquirerT
+    (Acquired& acquired, mseconds_t milliseconds): m_acquired(acquired) {
+        AcquireStatus status = AcquireSuccess;
+        if (AcquireSuccess != (status = m_acquired.TimedAcquire(milliseconds))) {
+            AcquireException e(AcquireFailed);
+            throw (e);
+        }
+    }
     AcquirerT(Acquired& acquired): m_acquired(acquired) {
         if (!(m_acquired.Acquire())) {
             AcquireException e(AcquireFailed);
