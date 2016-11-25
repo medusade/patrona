@@ -188,8 +188,54 @@ protected:
 };
 typedef ForkerT<> Forker;
 
+typedef Joined ForkedTImplements;
+typedef Base ForkedTExtends;
+///////////////////////////////////////////////////////////////////////
+///  Class: ForkedT
+///////////////////////////////////////////////////////////////////////
+template
+<class TImplements = ForkedTImplements, class TExtends = ForkedTExtends>
+
+class _EXPORT_CLASS ForkedT: virtual public TImplements,public TExtends {
+public:
+    typedef TImplements Implements;
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    ForkedT(): m_isForked(false) {
+    }
+    virtual ~ForkedT() {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool Joined() {
+        if ((this->IsForked())) {
+            return this->Join();
+        }
+        return true;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool SetIsForked(bool to = true) {
+        m_isForked = to;
+        return m_isForked;
+    }
+    virtual bool IsForked() const {
+        return m_isForked;
+    }
+    virtual bool SetIsJoined(bool to = true) {
+        m_isForked = !to;
+        return !m_isForked;
+    }
+    virtual bool IsJoined() const {
+        return !m_isForked;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+protected:
+    bool m_isForked;
+};
+
 } // namespace patrona
 
 #endif // _PATRONA_CPP_XOS_BASE_JOINED_HPP
-        
-

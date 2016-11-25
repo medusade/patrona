@@ -35,6 +35,7 @@ typedef Base MainTExtends;
 template
 <typename TChar = char, typename TEndChar = TChar, TEndChar VEndChar = 0,
  class TImplements = MainTImplements, class TExtends = MainTExtends>
+
 class _EXPORT_CLASS MainT: virtual public TImplements, public TExtends {
 public:
     typedef TImplements Implements;
@@ -57,7 +58,7 @@ public:
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    MainT() {
+    MainT(): m_didUsage(false) {
         if ((TheMain())) {
             Exception e(Exception::MainAlreadyExists);
             throw (e);
@@ -99,12 +100,27 @@ protected:
         int err = 0;
         if (!(err = this->BeforeRun(argc, argv, env))) {
             int err2 = 0;
-            err = this->Run(argc, argv, env);
+            if (!(DidUsage())) {
+                err = this->Run(argc, argv, env);
+            }
             if ((err2 = this->AfterRun(argc, argv, env))) {
                 if (!err) err = err2;
             }
         }
         return err;
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual int Usage(int argc, char_t**argv, char_t** env) {
+        int err = 1;
+        return err;
+    }
+    virtual bool SetDidUsage(bool to = true) {
+        return m_didUsage = to;
+    }
+    virtual bool DidUsage() const {
+        return m_didUsage;
     }
 
 public:
@@ -146,6 +162,18 @@ protected:
         ssize_t count = this->Out(this->StdErr(), chars);
         return count;
     }
+    virtual ssize_t ErrF(const char* chars, ...) {
+        ssize_t count = 0;
+        va_list va;
+        va_start(va, chars);
+        count = ErrFV(chars, va);
+        va_end(va);
+        return count;
+    }
+    virtual ssize_t ErrFV(const char* chars, va_list va) {
+        ssize_t count = this->OutFV(this->StdErr(), chars, va);
+        return count;
+    }
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
@@ -167,6 +195,18 @@ protected:
     }
     virtual ssize_t Out(const char* chars) {
         ssize_t count = this->Out(this->StdOut(), chars);
+        return count;
+    }
+    virtual ssize_t OutF(const char* chars, ...) {
+        ssize_t count = 0;
+        va_list va;
+        va_start(va, chars);
+        count = OutFV(chars, va);
+        va_end(va);
+        return count;
+    }
+    virtual ssize_t OutFV(const char* chars, va_list va) {
+        ssize_t count = this->OutFV(this->StdOut(), chars, va);
         return count;
     }
 
@@ -231,6 +271,17 @@ protected:
         }
         return count;
     }
+    virtual ssize_t OutFV(FILE* out, const char* chars, va_list va) const {
+        ssize_t count = 0, amount = 0;
+        if ((out) && (chars)) {
+            if (0 <= (amount = vfprintf(out, chars, va))) {
+                count += amount;
+            } else {
+                return amount;
+            }
+        }
+        return count;
+    }
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
@@ -243,6 +294,11 @@ protected:
     virtual FILE* StdIn() const {
         return stdin;
     }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+protected:
+    bool m_didUsage;
 };
 typedef MainT<> Main;
 
