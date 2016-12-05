@@ -135,6 +135,9 @@ public:
     OpenedT(Attached attachedTo, bool isOpen)
     : Extends(attachedTo), m_isOpen(isOpen) {
     }
+    OpenedT(Attached attachedTo)
+    : Extends(attachedTo), m_isOpen(false) {
+    }
     OpenedT(const OpenedT& copy)
     : Extends(copy.AttachedTo()), m_isOpen(false) {
     }

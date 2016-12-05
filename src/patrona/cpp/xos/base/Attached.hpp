@@ -25,6 +25,63 @@
 
 namespace patrona {
 
+///////////////////////////////////////////////////////////////////////
+///  Enum: AttachStatus
+///////////////////////////////////////////////////////////////////////
+enum AttachStatus {
+    DetachSuccess,
+    AttachSuccess = DetachSuccess,
+    AttachFailed,
+    DetachFailed
+};
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+inline const char* AttachStatusToChars(AttachStatus status) {
+    switch (status) {
+    case AttachSuccess: return "AttachSuccess";
+    case AttachFailed: return "AttachFailed";
+    case DetachFailed: return "DetachFailed";
+    }
+    return "Unknown";
+}
+
+typedef ImplementBase AttachExceptionTImplements;
+typedef Base AttachExceptionTExtends;
+///////////////////////////////////////////////////////////////////////
+///  Class: AttachExceptionT
+///////////////////////////////////////////////////////////////////////
+template
+<class TImplements = AttachExceptionTImplements,
+ class TExtends = AttachExceptionTExtends>
+
+class _EXPORT_CLASS AttachExceptionT: virtual public TImplements, public TExtends {
+public:
+    typedef TImplements Implements;
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    AttachExceptionT(AttachStatus status): m_status(status) {}
+    virtual ~AttachExceptionT() {}
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual AttachStatus Status() const {
+        return m_status;
+    }
+    virtual String StatusToString() const {
+        String to(StatusToChars());
+        return to;
+    }
+    virtual const char* StatusToChars() const {
+        return AttachStatusToChars(Status());
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+protected:
+    AttachStatus m_status;
+};
+typedef AttachExceptionT<> AttachException;
+
 typedef ImplementBase AttacherTImplements;
 ///////////////////////////////////////////////////////////////////////
 ///  Class: AttacherT
