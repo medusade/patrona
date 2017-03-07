@@ -42,6 +42,8 @@ class _EXPORT_CLASS StreamT
 public:
     typedef TReaderImplements ReaderImplements;
     typedef TWriterImplements WriterImplements;
+    typedef TSized sized_t;
+    typedef TWhat what_t;
 };
 
 typedef StreamT<char, void> CharStream;

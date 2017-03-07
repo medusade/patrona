@@ -41,17 +41,36 @@ public:
     typedef TWhat what_t;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual ssize_t Write (const what_t* what, size_t size) {
+    virtual ssize_t Write(const what_t* what, size_t size) {
         ssize_t count = 0;
+        return count;
+    }
+    virtual ssize_t Write(const what_t* what) {
+        ssize_t count = 0, amount = 0;
+        const sized_t* sized = 0;
+        if ((sized = ((const sized_t*)what))) {
+            while ((*sized) != 0) {
+                if (0 < (amount = Write(sized, 1))) {
+                    count += amount;
+                    ++sized;
+                } else {
+                    return -1;
+                }
+            }
+        }
         return count;
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
+typedef WriterT<char, void> Writer;
 
 typedef WriterT<char, void> CharWriter;
 typedef WriterT<wchar_t, void> WCharWriter;
 typedef WriterT<tchar_t, void> TCharWriter;
+
+typedef WriterT<byte_t, void> ByteWriter;
+typedef WriterT<word_t, void> WordWriter;
 
 } // namespace io
 } // namespace patrona

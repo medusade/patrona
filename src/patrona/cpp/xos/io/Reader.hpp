@@ -48,11 +48,14 @@ public:
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
+typedef ReaderT<char, void> Reader;
 
 typedef ReaderT<char, void> CharReader;
 typedef ReaderT<wchar_t, void> WCharReader;
 typedef ReaderT<tchar_t, void> TCharReader;
 
+typedef ReaderT<byte_t, void> ByteReader;
+typedef ReaderT<word_t, void> WordReader;
 } // namespace io
 } // namespace patrona
 

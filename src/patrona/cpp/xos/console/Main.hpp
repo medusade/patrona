@@ -21,13 +21,13 @@
 #ifndef _PATRONA_CPP_XOS_CONSOLE_MAIN_HPP
 #define _PATRONA_CPP_XOS_CONSOLE_MAIN_HPP
 
-#include "patrona/cpp/xos/base/Base.hpp"
+#include "patrona/cpp/xos/base/Locked.hpp"
 #include <iostream>
 
 namespace patrona {
 namespace console {
 
-typedef ImplementBase MainTImplements;
+typedef Locked MainTImplements;
 typedef Base MainTExtends;
 ///////////////////////////////////////////////////////////////////////
 ///  Class: MainT

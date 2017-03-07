@@ -216,6 +216,27 @@ protected:
         }
         return err;
     }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual int OnUsageOption
+    (int optval, const char* optarg,
+     const char* optname, int optind,
+     int argc, char** argv, char** env) {
+        int err = Usage(argc, argv, env);
+        return err;
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual int OnInvalidOption
+    (int optval, const char* optarg,
+     const char* optname, int optind,
+     int argc, char**argv, char**env) {
+        int err = 1;
+        ErrF("invalid option \"%s\"\n", optname);
+        return err;
+    }
     virtual int OnInvalidOptionArg
     (int optval, const char* optarg,
      const char* optname, int optind,
@@ -227,13 +248,6 @@ protected:
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual int OnUsageOption
-    (int optval, const char* optarg,
-     const char* optname, int optind,
-     int argc, char** argv, char** env) {
-        int err = Usage(argc, argv, env);
-        return err;
-    }
     virtual int OnOption
     (int optval, const char* optarg,
      const char* optname, int optind,
@@ -245,6 +259,8 @@ protected:
             (optval, optarg, optname, optind, argc, argv, env);
             break;
         default:
+            err = OnInvalidOption
+            (optval, optarg, optname, optind, argc, argv, env);
             break;
         }
         return err;
