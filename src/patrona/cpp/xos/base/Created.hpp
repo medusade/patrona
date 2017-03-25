@@ -150,6 +150,47 @@ public:
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
+    virtual bool Create() {
+        Attached detached = ((Attached)Unattached);
+        if (((Attached)Unattached) != (detached = CreateAttached())) {
+            this->SetIsCreated();
+            return true;
+        }
+        return false;
+    }
+    virtual bool Destroy() {
+        Attached detached = ((Attached)Unattached);
+        if (((Attached)Unattached) != (detached = this->Detach())) {
+            if ((DestroyDetached(detached))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual Attached CreateAttached() {
+        Attached detached = ((Attached)Unattached);
+        if ((detached = CreateDetached())) {
+            this->Attach(detached);
+        }
+        return detached;
+    }
+    virtual Attached CreateDetached() const {
+        Attached detached = ((Attached)Unattached);
+        return detached;
+    }
+    virtual bool DestroyDetached(Attached detached) const {
+        if (((Attached)Unattached) != (detached)) {
+            bool success = false;
+            return success;
+        }
+        return false;
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
     virtual Attached AttachCreated
     (Attached attachedTo, bool isCreated = true) {
         attachedTo = this->Attach(attachedTo);

@@ -174,6 +174,14 @@ protected:
         ssize_t count = this->OutFV(this->StdErr(), chars, va);
         return count;
     }
+    virtual ssize_t ErrLV(const char* chars, va_list va) {
+        ssize_t count = this->OutLV(this->StdErr(), chars, va);
+        return count;
+    }
+    virtual ssize_t ErrFlush() {
+        ssize_t count = this->OutFlush(this->StdErr());
+        return count;
+    }
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
@@ -207,6 +215,14 @@ protected:
     }
     virtual ssize_t OutFV(const char* chars, va_list va) {
         ssize_t count = this->OutFV(this->StdOut(), chars, va);
+        return count;
+    }
+    virtual ssize_t OutLV(const char* chars, va_list va) {
+        ssize_t count = this->OutLV(this->StdOut(), chars, va);
+        return count;
+    }
+    virtual ssize_t OutFlush() {
+        ssize_t count = this->OutFlush(this->StdOut());
         return count;
     }
 
@@ -279,6 +295,23 @@ protected:
             } else {
                 return amount;
             }
+        }
+        return count;
+    }
+    virtual ssize_t OutLV(FILE* out, const char* chars, va_list va) const {
+        ssize_t count = 0, amount = 0;
+        for (count = 0; chars; count += amount) {
+            if (0 > (amount = this->Out(out, chars))) {
+                return amount;
+            }
+            chars = va_arg(va, const char*);
+        }
+        return count;
+    }
+    virtual ssize_t OutFlush(FILE* out) const {
+        ssize_t count = 0;
+        if ((out)) {
+            fflush(out);
         }
         return count;
     }
