@@ -143,23 +143,23 @@ protected:
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     virtual ssize_t ErrLn(const char* chars, size_t length) {
-        ssize_t count = this->OutLn(this->StdErr(), chars, length);
+        ssize_t count = this->OutLn(this->OutStdErr(), chars, length);
         return count;
     }
     virtual ssize_t ErrLn(const char* chars) {
-        ssize_t count = this->OutLn(this->StdErr(), chars);
+        ssize_t count = this->OutLn(this->OutStdErr(), chars);
         return count;
     }
     virtual ssize_t ErrLn() {
-        ssize_t count = this->OutLn(this->StdErr());
+        ssize_t count = this->OutLn(this->OutStdErr());
         return count;
     }
     virtual ssize_t Err(const char* chars, size_t length) {
-        ssize_t count = this->Out(this->StdErr(), chars, length);
+        ssize_t count = this->Out(this->OutStdErr(), chars, length);
         return count;
     }
     virtual ssize_t Err(const char* chars) {
-        ssize_t count = this->Out(this->StdErr(), chars);
+        ssize_t count = this->Out(this->OutStdErr(), chars);
         return count;
     }
     virtual ssize_t ErrF(const char* chars, ...) {
@@ -171,38 +171,38 @@ protected:
         return count;
     }
     virtual ssize_t ErrFV(const char* chars, va_list va) {
-        ssize_t count = this->OutFV(this->StdErr(), chars, va);
+        ssize_t count = this->OutFV(this->OutStdErr(), chars, va);
         return count;
     }
     virtual ssize_t ErrLV(const char* chars, va_list va) {
-        ssize_t count = this->OutLV(this->StdErr(), chars, va);
+        ssize_t count = this->OutLV(this->OutStdErr(), chars, va);
         return count;
     }
     virtual ssize_t ErrFlush() {
-        ssize_t count = this->OutFlush(this->StdErr());
+        ssize_t count = this->OutFlush(this->OutStdErr());
         return count;
     }
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     virtual ssize_t OutLn(const char* chars, size_t length) {
-        ssize_t count = this->OutLn(this->StdOut(), chars, length);
+        ssize_t count = this->OutLn(this->OutStdOut(), chars, length);
         return count;
     }
     virtual ssize_t OutLn(const char* chars) {
-        ssize_t count = this->OutLn(this->StdOut(), chars);
+        ssize_t count = this->OutLn(this->OutStdOut(), chars);
         return count;
     }
     virtual ssize_t OutLn() {
-        ssize_t count = this->OutLn(this->StdOut());
+        ssize_t count = this->OutLn(this->OutStdOut());
         return count;
     }
     virtual ssize_t Out(const char* chars, size_t length) {
-        ssize_t count = this->Out(this->StdOut(), chars, length);
+        ssize_t count = this->Out(this->OutStdOut(), chars, length);
         return count;
     }
     virtual ssize_t Out(const char* chars) {
-        ssize_t count = this->Out(this->StdOut(), chars);
+        ssize_t count = this->Out(this->OutStdOut(), chars);
         return count;
     }
     virtual ssize_t OutF(const char* chars, ...) {
@@ -214,15 +214,15 @@ protected:
         return count;
     }
     virtual ssize_t OutFV(const char* chars, va_list va) {
-        ssize_t count = this->OutFV(this->StdOut(), chars, va);
+        ssize_t count = this->OutFV(this->OutStdOut(), chars, va);
         return count;
     }
     virtual ssize_t OutLV(const char* chars, va_list va) {
-        ssize_t count = this->OutLV(this->StdOut(), chars, va);
+        ssize_t count = this->OutLV(this->OutStdOut(), chars, va);
         return count;
     }
     virtual ssize_t OutFlush() {
-        ssize_t count = this->OutFlush(this->StdOut());
+        ssize_t count = this->OutFlush(this->OutStdOut());
         return count;
     }
 
@@ -314,6 +314,18 @@ protected:
             fflush(out);
         }
         return count;
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual FILE* OutStdErr() {
+        return this->StdErr();
+    }
+    virtual FILE* OutStdOut() {
+        return this->StdOut();
+    }
+    virtual FILE* InStdIn() {
+        return this->StdIn();
     }
 
     ///////////////////////////////////////////////////////////////////////

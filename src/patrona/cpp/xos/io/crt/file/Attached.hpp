@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2016 $organization$
+/// Copyright (c) 1988-2017 $organization$
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,63 +13,64 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Reader.hpp
+///   File: Attached.hpp
 ///
 /// Author: $author$
-///   Date: 12/12/2016
+///   Date: 4/19/2017
 ///////////////////////////////////////////////////////////////////////
-#ifndef _PATRONA_CPP_XOS_IO_READER_HPP
-#define _PATRONA_CPP_XOS_IO_READER_HPP
+#ifndef _PATRONA_CPP_XOS_IO_CRT_FILE_ATTACHED_HPP
+#define _PATRONA_CPP_XOS_IO_CRT_FILE_ATTACHED_HPP
 
+#include "patrona/cpp/xos/base/Attached.hpp"
 #include "patrona/cpp/xos/base/Base.hpp"
 
 namespace patrona {
 namespace io {
+namespace crt {
+namespace file {
 
-typedef ImplementBase ReaderTImplements;
+typedef FILE* AttachedTo;
 ///////////////////////////////////////////////////////////////////////
-///  Class: ReaderT
+///  Class: AttachedT
 ///////////////////////////////////////////////////////////////////////
 template
-<typename TSized, typename TWhat = TSized,
- class TImplements = ReaderTImplements>
+<typename TAttachedTo = AttachedTo,
+ class TAttacherImplements = ImplementBase, class TAttachedExtends = Base,
+ class TImplements = patrona::AttacherT<TAttachedTo, int, 0, TAttacherImplements>,
+ class TExtends = patrona::AttachedT<TAttachedTo, int, 0, TImplements, TAttachedExtends> >
 
-class _EXPORT_CLASS ReaderT: virtual public TImplements {
+class _EXPORT_CLASS AttachedT: virtual public TImplements, public TExtends {
 public:
     typedef TImplements Implements;
-    typedef TSized sized_t;
-    typedef TWhat what_t;
+    typedef TExtends Extends;
+    typedef TAttachedTo AttachedTo;
+
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual ssize_t Read(what_t* what, size_t size) {
-        ssize_t count = 0;
-        return count;
+    AttachedT(AttachedTo attachedTo = 0): Extends(attachedTo) {
     }
-    virtual ssize_t ReadLn() {
-        ssize_t count = 0, amount = 0;
-        sized_t sized;
-        do {
-            if (0 < (amount = this->Read(&sized, 1))) {
-                count += amount;
-                if (!(sized != ((sized_t)'\n'))) {
-                    break;
-                }
-            }
-        } while (0 < (amount));
-        return count;
+    AttachedT(const AttachedT& copy): Extends(copy) {
     }
+    virtual ~AttachedT() {
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool SetModeIsBinary(bool to = true) {
+        return true;
+    }
+    virtual bool ModeIsBinary() const {
+        return true;
+    }
+
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
-typedef ReaderT<char, void> Reader;
+typedef AttachedT<> Attached;
 
-typedef ReaderT<char, void> CharReader;
-typedef ReaderT<wchar_t, void> WCharReader;
-typedef ReaderT<tchar_t, void> TCharReader;
+} // namespace file 
+} // namespace crt 
+} // namespace io 
+} // namespace patrona 
 
-typedef ReaderT<byte_t, void> ByteReader;
-typedef ReaderT<word_t, void> WordReader;
-} // namespace io
-} // namespace patrona
-
-#endif // _PATRONA_CPP_XOS_IO_READER_HPP
+#endif // _PATRONA_CPP_XOS_IO_CRT_FILE_ATTACHED_HPP 

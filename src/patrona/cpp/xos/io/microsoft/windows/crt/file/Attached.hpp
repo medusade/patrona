@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2016 $organization$
+/// Copyright (c) 1988-2017 $organization$
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,47 +13,47 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Stream.hpp
+///   File: Attached.hpp
 ///
 /// Author: $author$
-///   Date: 12/12/2016
+///   Date: 4/19/2017
 ///////////////////////////////////////////////////////////////////////
-#ifndef _PATRONA_CPP_XOS_IO_STREAM_HPP
-#define _PATRONA_CPP_XOS_IO_STREAM_HPP
-
-#include "patrona/cpp/xos/io/Reader.hpp"
-#include "patrona/cpp/xos/io/Writer.hpp"
+#ifndef _PATRONA_CPP_XOS_IO_MICROSOFT_WINDOWS_CRT_FILE_ATTACHED_HPP
+#define _PATRONA_CPP_XOS_IO_MICROSOFT_WINDOWS_CRT_FILE_ATTACHED_HPP
+#include "patrona/cpp/xos/base/Base.hpp"
 
 namespace patrona {
 namespace io {
+namespace microsoft {
+namespace windows {
+namespace crt {
+namespace file {
 
-typedef ImplementBase StreamTImplements;
+
 ///////////////////////////////////////////////////////////////////////
-///  Class: StreamT
+///  Class: AttachedT
 ///////////////////////////////////////////////////////////////////////
 template
-<typename TSized, typename TWhat = TSized,
- class TImplements = StreamTImplements,
- class TReaderImplements = ReaderT<TSized, TWhat, TImplements>,
- class TWriterImplements = WriterT<TSized, TWhat, TImplements> >
-
-class _EXPORT_CLASS StreamT
-: virtual public TReaderImplements, virtual public TWriterImplements {
+<class TImplements = AttachedTImplements, class TExtends = AttachedTExtends>
+class _EXPORT_CLASS AttachedT: virtual public TImplements,public TExtends {
 public:
-    typedef TReaderImplements ReaderImplements;
-    typedef TWriterImplements WriterImplements;
-    typedef TSized sized_t;
-    typedef TWhat what_t;
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
+    typedef TImplements Implements;
+    typedef TExtends Extends;
+    AttachedT() {
+    }
+    virtual ~AttachedT() {
+    }
 };
-typedef StreamT<char, void> Stream;
 
-typedef StreamT<char, void> CharStream;
-typedef StreamT<wchar_t, void> WCharStream;
-typedef StreamT<tchar_t, void> TCharStream;
 
-} // namespace io
-} // namespace patrona
+} // namespace file 
+} // namespace crt 
+} // namespace windows 
+} // namespace microsoft 
+} // namespace io 
+} // namespace patrona 
 
-#endif // _PATRONA_CPP_XOS_IO_STREAM_HPP 
+
+#endif // _PATRONA_CPP_XOS_IO_MICROSOFT_WINDOWS_CRT_FILE_ATTACHED_HPP 
+        
+

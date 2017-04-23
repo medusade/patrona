@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2016 $organization$
+/// Copyright (c) 1988-2017 $organization$
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -16,44 +16,38 @@
 ///   File: Stream.hpp
 ///
 /// Author: $author$
-///   Date: 12/12/2016
+///   Date: 4/13/2017
 ///////////////////////////////////////////////////////////////////////
-#ifndef _PATRONA_CPP_XOS_IO_STREAM_HPP
-#define _PATRONA_CPP_XOS_IO_STREAM_HPP
-
-#include "patrona/cpp/xos/io/Reader.hpp"
-#include "patrona/cpp/xos/io/Writer.hpp"
+#ifndef _PATRONA_CPP_XOS_IO_FILE_STREAM_HPP
+#define _PATRONA_CPP_XOS_IO_FILE_STREAM_HPP
+#include "patrona/cpp/xos/io/Stream.hpp"
 
 namespace patrona {
 namespace io {
+namespace file {
 
-typedef ImplementBase StreamTImplements;
+
 ///////////////////////////////////////////////////////////////////////
 ///  Class: StreamT
 ///////////////////////////////////////////////////////////////////////
 template
-<typename TSized, typename TWhat = TSized,
- class TImplements = StreamTImplements,
- class TReaderImplements = ReaderT<TSized, TWhat, TImplements>,
- class TWriterImplements = WriterT<TSized, TWhat, TImplements> >
-
-class _EXPORT_CLASS StreamT
-: virtual public TReaderImplements, virtual public TWriterImplements {
+<class TImplements = StreamTImplements, class TExtends = StreamTExtends>
+class _EXPORT_CLASS StreamT: virtual public TImplements,public TExtends {
 public:
-    typedef TReaderImplements ReaderImplements;
-    typedef TWriterImplements WriterImplements;
-    typedef TSized sized_t;
-    typedef TWhat what_t;
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
+    typedef TImplements Implements;
+    typedef TExtends Extends;
+    StreamT() {
+    }
+    virtual ~StreamT() {
+    }
 };
-typedef StreamT<char, void> Stream;
 
-typedef StreamT<char, void> CharStream;
-typedef StreamT<wchar_t, void> WCharStream;
-typedef StreamT<tchar_t, void> TCharStream;
 
-} // namespace io
-} // namespace patrona
+} // namespace file 
+} // namespace io 
+} // namespace patrona 
 
-#endif // _PATRONA_CPP_XOS_IO_STREAM_HPP 
+
+#endif // _PATRONA_CPP_XOS_IO_FILE_STREAM_HPP 
+        
+
