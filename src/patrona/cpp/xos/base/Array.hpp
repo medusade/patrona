@@ -247,6 +247,15 @@ protected:
         }
         return count;
     }
+    virtual size_t CountElements(TWhat* what, const TWhat& end) const {
+        size_t count = 0;
+        if (what) {
+            while (end != *(what++)) {
+                ++count;
+            }
+        }
+        return count;
+    }
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////

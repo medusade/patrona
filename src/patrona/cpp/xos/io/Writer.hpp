@@ -64,13 +64,75 @@ public:
     ///////////////////////////////////////////////////////////////////////
 };
 typedef WriterT<char, void> Writer;
-
-typedef WriterT<char, void> CharWriter;
-typedef WriterT<wchar_t, void> WCharWriter;
-typedef WriterT<tchar_t, void> TCharWriter;
-
 typedef WriterT<byte_t, void> ByteWriter;
 typedef WriterT<word_t, void> WordWriter;
+
+///////////////////////////////////////////////////////////////////////
+///  Class: CharWriterT
+///////////////////////////////////////////////////////////////////////
+template
+<typename TSized, typename TWhat = TSized,
+ class TImplements = WriterT<TSized, TWhat, WriterTImplements> >
+
+class _EXPORT_CLASS CharWriterT: virtual public TImplements {
+public:
+    typedef TImplements Implements;
+    typedef TSized sized_t;
+    typedef TWhat what_t;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    using Implements::Write;
+    virtual ssize_t WriteLn(const what_t* what, size_t size) {
+        ssize_t count = 0, amount = 0;
+        if (0 <= (amount = this->Write(what, size))) {
+            count += amount;
+            if (0 < (amount = this->WriteLn())) {
+                count += amount;
+            } else {
+                return amount;
+            }
+        } else {
+            return amount;
+        }
+        return count;
+    }
+    virtual ssize_t WriteLn(const what_t* what) {
+        ssize_t count = 0, amount = 0;
+        if (0 <= (amount = this->Write(what))) {
+            count += amount;
+            if (0 < (amount = this->WriteLn())) {
+                count += amount;
+            } else {
+                return amount;
+            }
+        } else {
+            return amount;
+        }
+        return count;
+    }
+    virtual ssize_t WriteLn() {
+        ssize_t count = 0, amount = 0;
+        if (0 < (amount = this->Write(&cr_, 1))) {
+            count += amount;
+            if (0 < (amount = this->Write(&lf_, 1))) {
+                count += amount;
+            } else {
+                return amount;
+            }
+        } else {
+            return amount;
+        }
+        return count;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+protected:
+    const char cr_ = '\r';
+    const char lf_ = '\n';
+};
+typedef CharWriterT<char, void> CharWriter;
+typedef CharWriterT<wchar_t, void> WCharWriter;
+typedef CharWriterT<tchar_t, void> TCharWriter;
 
 } // namespace io
 } // namespace patrona

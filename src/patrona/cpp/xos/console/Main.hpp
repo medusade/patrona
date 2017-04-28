@@ -21,6 +21,7 @@
 #ifndef _PATRONA_CPP_XOS_CONSOLE_MAIN_HPP
 #define _PATRONA_CPP_XOS_CONSOLE_MAIN_HPP
 
+#include "patrona/cpp/xos/console/IO.hpp"
 #include "patrona/cpp/xos/base/Locked.hpp"
 #include <iostream>
 
@@ -34,7 +35,8 @@ typedef Base MainTExtends;
 ///////////////////////////////////////////////////////////////////////
 template
 <typename TChar = char, typename TEndChar = TChar, TEndChar VEndChar = 0,
- class TImplements = MainTImplements, class TExtends = MainTExtends>
+ class TImplements = IOT<TChar, TEndChar, VEndChar, MainTImplements>,
+ class TExtends = MainTExtends>
 
 class _EXPORT_CLASS MainT: virtual public TImplements, public TExtends {
 public:

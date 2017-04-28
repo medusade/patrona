@@ -64,7 +64,38 @@ public:
     ///////////////////////////////////////////////////////////////////////
     using Extends::Open;
     virtual bool Open(const char* name) {
-        return this->Open(name, file::ModeWriteBinary);
+        if ((this->Open(name, file::ModeWriteBinary))) {
+            return true;
+        }
+        return false;
+    }
+    virtual bool OpenSafe(const char* name, const char* pattern) {
+        if ((name) && (name[0]) && (pattern) && (pattern[0])) {
+            if ((this->Open(name, Extends::ModeReadBinary()))) {
+                if (!(this->ReadPattern(pattern))) {
+                    this->Close();
+                    return false;
+                }
+            }
+            if ((this->Open(name))) {
+                return true;
+            }
+        }
+        return false;
+    }
+    virtual bool ReadPattern(const char* pattern) {
+        if ((pattern) && (pattern[0])) {
+            for (sized_t c = 0; (*pattern) != 0; ++pattern) {
+                if (0 < (Extends::Read(&c, 1))) {
+                    if (c == (*pattern)) {
+                        continue;
+                    }
+                }
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     ///////////////////////////////////////////////////////////////////////
