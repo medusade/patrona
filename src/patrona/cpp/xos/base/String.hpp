@@ -130,7 +130,7 @@ public:
     virtual int Compare(const StringT& to) const {
         return Compare(to.Chars(), to.Length());
     }
-    virtual int Compare(const char_t* toChars) {
+    virtual int Compare(const char_t* toChars) const {
         return Compare(toChars, _length_of(toChars));
     }
     virtual int Compare(const char_t* toChars, size_t toLength) const {
@@ -184,6 +184,9 @@ public:
     ///////////////////////////////////////////////////////////////////////
     virtual StringT& operator = (const StringT& copy) {
         return Assign(copy.Chars(), copy.Length());
+    }
+    virtual int operator != (const StringT& to) const {
+        return Compare(to);
     }
 
 protected:

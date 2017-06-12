@@ -33,9 +33,8 @@ typedef ImplementBase StreamTImplements;
 ///////////////////////////////////////////////////////////////////////
 template
 <typename TSized, typename TWhat = TSized,
- class TImplements = StreamTImplements,
- class TReaderImplements = ReaderT<TSized, TWhat, TImplements>,
- class TWriterImplements = WriterT<TSized, TWhat, TImplements> >
+ class TReaderImplements = ReaderT<TSized, TWhat>,
+ class TWriterImplements = WriterT<TSized, TWhat> >
 
 class _EXPORT_CLASS StreamT
 : virtual public TReaderImplements, virtual public TWriterImplements {
@@ -47,11 +46,11 @@ public:
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
-typedef StreamT<char, void> Stream;
+typedef StreamT<char, void, Reader, Writer> Stream;
 
-typedef StreamT<char, void> CharStream;
-typedef StreamT<wchar_t, void> WCharStream;
-typedef StreamT<tchar_t, void> TCharStream;
+typedef StreamT<char, void, CharReader, CharWriter> CharStream;
+typedef StreamT<wchar_t, void, WCharReader, WCharWriter> WCharStream;
+typedef StreamT<tchar_t, void, TCharReader, TCharWriter> TCharStream;
 
 } // namespace io
 } // namespace patrona

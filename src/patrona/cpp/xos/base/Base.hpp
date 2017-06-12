@@ -44,6 +44,18 @@ inline const wchar_t& to_wchar(const wchar_t& v) { return v; }
 inline const char& to_char(const char& v) { return v; }
 inline const bool& to_bool(const bool& v) { return v; }
 
+inline seconds_t mseconds_seconds
+(mseconds_t mseconds) { return nadir::mseconds_seconds(mseconds); }
+
+inline mseconds_t mseconds_mseconds
+(mseconds_t mseconds) { return nadir::mseconds_mseconds(mseconds); }
+
+inline useconds_t mseconds_useconds
+(mseconds_t mseconds) { return nadir::mseconds_useconds(mseconds); }
+
+inline nseconds_t mseconds_nseconds
+(mseconds_t mseconds) { return nadir::mseconds_nseconds(mseconds); }
+
 } // namespace patrona
 
 #endif // _PATRONA_CPP_XOS_BASE_BASE_HPP

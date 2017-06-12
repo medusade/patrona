@@ -34,29 +34,28 @@ namespace io {
 namespace crt {
 namespace file {
 
-typedef FILE* StreamTAttachedTo;
-typedef patrona::io::Stream::sized_t StreamTSized;
-typedef patrona::io::Stream::what_t StreamTWhat;
-typedef patrona::OpenerT<io::Stream> StreamTOpener;
-typedef patrona::AttacherT<StreamTAttachedTo, int, 0, StreamTOpener> StreamTAttacher;
-typedef patrona::AttachedT<StreamTAttachedTo, int, 0, StreamTAttacher, Base> StreamTAttached;
-typedef patrona::OpenedT<StreamTAttachedTo, int, 0, StreamTAttacher, StreamTAttached> StreamTOpened;
-typedef StreamTAttacher StreamTImplements;
-typedef StreamTOpened StreamTExtends;
+typedef FILE* StreamAttachedTo;
+typedef patrona::OpenerT<patrona::io::Stream> StreamOpener;
+typedef patrona::AttacherT<StreamAttachedTo, int, 0, StreamOpener> StreamAttacher;
+typedef patrona::AttachedT<StreamAttachedTo, int, 0, StreamAttacher, Base> StreamAttached;
+typedef patrona::OpenedT<StreamAttachedTo, int, 0, StreamAttacher, StreamAttached> StreamOpened;
+
+typedef StreamAttacher StreamTImplements;
+typedef StreamOpened StreamTExtends;
 ///////////////////////////////////////////////////////////////////////
 ///  Class: StreamT
 ///////////////////////////////////////////////////////////////////////
 template
 <class TImplements = StreamTImplements, class TExtends = StreamTExtends>
 
-class _EXPORT_CLASS StreamT: virtual public TImplements,public TExtends {
+class _EXPORT_CLASS StreamT: virtual public TImplements, public TExtends {
 public:
     typedef TImplements Implements;
     typedef TExtends Extends;
 
-    typedef StreamTAttachedTo attached_t;
-    typedef StreamTWhat what_t;
-    typedef StreamTSized sized_t;
+    typedef typename Extends::Attached attached_t;
+    typedef typename Implements::Implements::what_t what_t;
+    typedef typename Implements::Implements::sized_t sized_t;
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
@@ -215,7 +214,14 @@ public:
 };
 typedef StreamT<> Stream;
 
-} // namespace file 
+typedef patrona::OpenerT<patrona::io::CharStream> CharStreamOpener;
+typedef patrona::AttacherT<StreamAttachedTo, int, 0, CharStreamOpener> CharStreamAttacher;
+typedef patrona::AttachedT<StreamAttachedTo, int, 0, CharStreamAttacher, Base> CharStreamAttached;
+typedef patrona::OpenedT<StreamAttachedTo, int, 0, CharStreamAttacher, CharStreamAttached> CharStreamOpened;
+typedef CharStreamAttacher CharStreamImplements;
+typedef StreamT<CharStreamImplements, CharStreamOpened> CharStream;
+
+} // namespace file
 } // namespace crt 
 } // namespace io 
 } // namespace patrona 

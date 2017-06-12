@@ -85,10 +85,16 @@ public:
     }
     virtual bool ReadPattern(const char* pattern) {
         if ((pattern) && (pattern[0])) {
+            ssize_t count = 0, amount = 0;
             for (sized_t c = 0; (*pattern) != 0; ++pattern) {
-                if (0 < (Extends::Read(&c, 1))) {
+                if (0 < (amount = Extends::Read(&c, 1))) {
+                    count += amount;
                     if (c == (*pattern)) {
                         continue;
+                    }
+                } else {
+                    if ((0 == amount) && (0 == count)) {
+                        return true;
                     }
                 }
                 return false;
@@ -127,7 +133,9 @@ public:
 };
 typedef WriterT<> Writer;
 
-} // namespace file 
+typedef WriterT<CharStreamImplements, CharStream> CharWriter;
+
+} // namespace file
 } // namespace crt 
 } // namespace io 
 } // namespace patrona 
