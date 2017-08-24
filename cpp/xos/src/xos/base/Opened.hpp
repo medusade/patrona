@@ -13,155 +13,158 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Created.hpp
+///   File: Opened.hpp
 ///
 /// Author: $author$
-///   Date: 8/6/2017
+///   Date: 8/23/2017
 ///////////////////////////////////////////////////////////////////////
-#ifndef _XOS_BASE_CREATED_HPP
-#define _XOS_BASE_CREATED_HPP
+#ifndef _XOS_BASE_OPENED_HPP
+#define _XOS_BASE_OPENED_HPP
 
 #include "xos/base/Attached.hpp"
-#include "xos/base/Exception.hpp"
 
 namespace xos {
 
 ///////////////////////////////////////////////////////////////////////
-///  Enum: CreateStatus
+///  Enum: OpenStatus
 ///////////////////////////////////////////////////////////////////////
-enum CreateStatus {
-    DestroySuccess,
-    CreateSuccess = DestroySuccess,
-    CreateFailed,
-    DestroyFailed
+enum OpenStatus {
+    CloseSuccess,
+    OpenSuccess = CloseSuccess,
+    OpenFailed,
+    CloseFailed
 };
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
-inline const char* CreateStatusToChars(CreateStatus status) {
+inline const char* OpenStatusToChars(OpenStatus status) {
     switch (status) {
-    case CreateSuccess: return "CreateSuccess";
-    case CreateFailed: return "CreateFailed";
-    case DestroyFailed: return "DestroyFailed";
+    case OpenSuccess: return "OpenSuccess";
+    case OpenFailed: return "OpenFailed";
+    case CloseFailed: return "CloseFailed";
     }
     return "Unknown";
 }
 
-typedef ExceptionTImplements CreateExceptionTImplements;
-typedef ExceptionT<CreateStatus> CreateExceptionTExtends;
+typedef ExceptionTImplements OpenExceptionTImplements;
+typedef ExceptionT<OpenStatus> OpenExceptionTExtends;
 ///////////////////////////////////////////////////////////////////////
-///  Class: CreateExceptionT
+///  Class: OpenExceptionT
 ///////////////////////////////////////////////////////////////////////
 template
-<class TImplements = CreateExceptionTImplements,
- class TExtends = CreateExceptionTExtends>
+<class TImplements = OpenExceptionTImplements,
+ class TExtends = OpenExceptionTExtends>
 
-class _EXPORT_CLASS CreateExceptionT: virtual public TImplements, public TExtends {
+class _EXPORT_CLASS OpenExceptionT: virtual public TImplements, public TExtends {
 public:
     typedef TImplements Implements;
     typedef TExtends Extends;
     typedef typename Extends::char_t char_t;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    CreateExceptionT(CreateStatus status): Extends(status) {}
-    CreateExceptionT(const CreateExceptionT& copy): Extends(copy.Status()) {}
-    virtual ~CreateExceptionT() {}
+    OpenExceptionT(OpenStatus status): Extends(status) {}
+    OpenExceptionT(const OpenExceptionT& copy): Extends(copy.Status()) {}
+    virtual ~OpenExceptionT() {}
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     virtual const char_t* StatusToChars() const {
-        return CreateStatusToChars(this->Status());
+        return OpenStatusToChars(this->Status());
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
-typedef CreateExceptionT<> CreateException;
+typedef OpenExceptionT<> OpenException;
 
-typedef ImplementBase CreateTImplements;
+typedef ImplementBase OpenTImplements;
 ///////////////////////////////////////////////////////////////////////
-///  Class: CreateT
+///  Class: OpenT
 ///////////////////////////////////////////////////////////////////////
 template
-<class TException = CreateException, class TImplements = CreateTImplements>
-class _EXPORT_CLASS CreateT: virtual public TImplements {
+<class TException = OpenException, class TImplements = OpenTImplements>
+class _EXPORT_CLASS OpenT: virtual public TImplements {
 public:
     typedef TImplements Implements;
-    typedef TException CreateException;
+    typedef TException OpenException;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual bool Create() { return false; }
-    virtual bool Destroy() { return false; }
-    virtual bool Created() {
-        if (!(IsCreated())) {
-            return Create();
+    virtual bool Open() { return false; }
+    virtual bool Close() { return false; }
+    virtual bool Opened() {
+        if (!(this->IsOpen())) {
+            return this->Open();
         }
         return true; }
-    virtual bool Destroyed() {
-        if ((IsCreated())) {
-            return Destroy();
+    virtual bool Closed() {
+        if ((this->IsOpen())) {
+            return this->Close();
         }
         return true; }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual bool SetIsCreated(bool isTrue = true) { return false; }
-    virtual bool IsCreated() const { return false; }
-    virtual bool IsDestroyed() const { return !IsCreated(); }
+    virtual bool SetIsOpen(bool to = true) { return this->IsOpen(); }
+    virtual bool IsOpen() const { return false; }
+    virtual bool IsClosed() const { return !this->IsOpen(); }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
-typedef CreateT<> Create;
+typedef OpenT<> Open;
 
-typedef Create CreatedTImplements;
-typedef Base CreatedTExtends;
+typedef Open OpenedTImplements;
+typedef Base OpenedTExtends;
 ///////////////////////////////////////////////////////////////////////
-///  Class: CreatedT
+///  Class: OpenedT
 ///////////////////////////////////////////////////////////////////////
 template
 <typename TAttached,
  typename TUnattached = TAttached, TUnattached VUnattached = 0,
- class TException = CreateException,
+ class TException = OpenException,
  class TImplements = AttachT
-  <TAttached, TUnattached, VUnattached, CreatedTImplements>,
+  <TAttached, TUnattached, VUnattached, OpenedTImplements>,
  class TExtends = AttachedT
- <TAttached, TUnattached, VUnattached, TImplements, CreatedTExtends> >
+ <TAttached, TUnattached, VUnattached, TImplements, OpenedTExtends> >
 
-class _EXPORT_CLASS CreatedT: virtual public TImplements, public TExtends {
+class _EXPORT_CLASS OpenedT: virtual public TImplements, public TExtends {
 public:
     typedef TImplements Implements;
     typedef TExtends Extends;
-    typedef TException CreateException;
+    typedef TException OpenException;
     typedef TAttached Attached;
-    static const TUnattached Unattached = VUnattached;
+    typedef TUnattached Unattached_t;
+    static const Unattached_t Unattached = VUnattached;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    CreatedT(Attached attachedTo, bool isCreated)
-    : Extends(attachedTo), m_isCreated(isCreated) {
+    OpenedT(Attached attachedTo, bool isOpen)
+    : Extends(attachedTo), m_isOpen(isOpen) {
     }
-    CreatedT(const CreatedT& copy)
-    : Extends(copy.AttachedTo()), m_isCreated(false) {
+    OpenedT(Attached attachedTo)
+    : Extends(attachedTo), m_isOpen(false) {
     }
-    CreatedT()
-    : Extends(((Attached)Unattached)), m_isCreated(false) {
+    OpenedT(const OpenedT& copy)
+    : Extends(copy.AttachedTo()), m_isOpen(false) {
     }
-    virtual ~CreatedT() {
-        if (!(this->Destroyed())) {
-            CreateException e(DestroyFailed);
+    OpenedT()
+    : Extends(((Attached)Unattached)), m_isOpen(false) {
+    }
+    virtual ~OpenedT() {
+        if (!(this->Closed())) {
+            OpenException e(CloseFailed);
             throw (e);
         }
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual bool Create() {
+    virtual bool Open() {
         Attached detached = ((Attached)Unattached);
-        if (((Attached)Unattached) != (detached = CreateAttached())) {
-            this->SetIsCreated();
+        if (((Attached)Unattached) != (detached = OpenAttached())) {
+            this->SetIsOpen();
             return true;
         }
         return false;
     }
-    virtual bool Destroy() {
+    virtual bool Close() {
         Attached detached = ((Attached)Unattached);
         if (((Attached)Unattached) != (detached = this->Detach())) {
-            if ((DestroyDetached(detached))) {
+            if ((CloseDetached(detached))) {
                 return true;
             }
         }
@@ -169,18 +172,18 @@ public:
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual Attached CreateAttached() {
+    virtual Attached OpenAttached() {
         Attached detached = ((Attached)Unattached);
-        if ((detached = CreateDetached())) {
+        if ((detached = OpenDetached())) {
             this->Attach(detached);
         }
         return detached;
     }
-    virtual Attached CreateDetached() const {
+    virtual Attached OpenDetached() const {
         Attached detached = ((Attached)Unattached);
         return detached;
     }
-    virtual bool DestroyDetached(Attached detached) const {
+    virtual bool CloseDetached(Attached detached) const {
         if (((Attached)Unattached) != (detached)) {
             bool success = false;
             return success;
@@ -189,45 +192,45 @@ public:
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual Attached AttachCreated
-    (Attached attachedTo, bool isCreated = true) {
+    virtual Attached AttachOpened
+    (Attached attachedTo, bool isOpen = true) {
         attachedTo = this->Attach(attachedTo);
-        this->SetIsCreated(isCreated);
+        this->SetIsOpen(isOpen);
         return attachedTo;
     }
-    virtual Attached DetachCreated(bool& isCreated){
+    virtual Attached DetachOpened(bool& isOpen){
         Attached detached = this->Detach();
-        isCreated = this->IsCreated();
-        this->SetIsCreated(false);
+        isOpen = this->IsOpen();
+        this->SetIsOpen(false);
         return detached;
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     virtual Attached Attach(Attached attachedTo) {
         attachedTo = Extends::Attach(attachedTo);
-        this->SetIsCreated(false);
+        this->SetIsOpen(false);
         return attachedTo;
     }
     virtual Attached Detach(){
         Attached detached = Extends::Detach();
-        this->SetIsCreated(false);
+        this->SetIsOpen(false);
         return detached;
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual bool SetIsCreated(bool isTrue = true) {
-        m_isCreated = isTrue;
-        return m_isCreated;
+    virtual bool SetIsOpen(bool to = true) {
+        m_isOpen = to;
+        return m_isOpen;
     }
-    virtual bool IsCreated() const {
-        return m_isCreated;
+    virtual bool IsOpen() const {
+        return m_isOpen;
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 protected:
-    bool m_isCreated;
+    bool m_isOpen;
 };
 
 } // namespace xos
 
-#endif // _XOS_BASE_CREATED_HPP 
+#endif // _XOS_BASE_OPENED_HPP 
