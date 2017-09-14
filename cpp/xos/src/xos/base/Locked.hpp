@@ -114,6 +114,30 @@ public:
 };
 typedef LockedT<> Locked;
 
+typedef Locked UnlockedTImplements;
+///////////////////////////////////////////////////////////////////////
+///  Class: UnlockedT
+///////////////////////////////////////////////////////////////////////
+template
+<class TLockException = LockException,
+ class TImplements = UnlockedTImplements>
+
+class _EXPORT_CLASS UnlockedT: virtual public TImplements {
+public:
+    typedef TImplements Implements;
+    typedef TLockException LockException;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual bool Lock() { return true; }
+    virtual LockStatus TryLock() { return LockSuccess; }
+    virtual LockStatus TimedLock(mseconds_t milliseconds) { return LockSuccess; }
+    virtual LockStatus UntimedLock() { return LockSuccess; }
+    virtual bool Unlock() { return true; }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+};
+typedef UnlockedT<> Unlocked;
+
 typedef ImplementBase LockTImplements;
 typedef Base LockTExtends;
 ///////////////////////////////////////////////////////////////////////
