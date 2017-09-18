@@ -20,6 +20,7 @@
 ########################################################################
 
 OTHER_PKG = ../../../../../../../..
+OTHER_BLD = ..
 
 ########################################################################
 # rostra
@@ -69,9 +70,12 @@ patrona_INCLUDEPATH += \
 $${PATRONA_SRC} \
 $${nadir_INCLUDEPATH} \
 $${rostra_INCLUDEPATH} \
+$${build_patrona_INCLUDEPATH} \
 
 patrona_DEFINES += \
-BUILD_CONFIG=$${BUILD_CONFIG} \
+$${rostra_DEFINES} \
+$${nadir_DEFINES} \
+$${build_patrona_DEFINES} \
 
 patrona_LIBS += \
 -L$${PATRONA_LIB}/libpatrona \

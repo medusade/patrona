@@ -17,12 +17,15 @@
 #
 # Author: $author$
 #   Date: 8/3/2017
+#
+# QtCreator .pro file for patrona library libpatrona
 ########################################################################
+include(../../../../../build/QtCreator/patrona.pri)
 include(../../../../QtCreator/patrona.pri)
 include(../../patrona.pri)
 include(../../../../QtCreator/lib/libpatrona/libpatrona.pri)
 
-TARGET = patrona
+TARGET = $${libpatrona_TARGET}
 TEMPLATE = lib
 CONFIG += staticlib
 

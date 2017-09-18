@@ -17,16 +17,41 @@
 #
 # Author: $author$
 #   Date: 8/3/2017
+#
+# macosx QtCreator .pri file for patrona
 ########################################################################
-
 PATRONA_OS = macosx
+#QMAKE_CXXFLAGS += -std=c++11
+#QMAKE_CXXFLAGS += -std=c++0x
 
 ########################################################################
+# rostra
+ROSTRA_BLD = $${OTHER_BLD}/$${ROSTRA_PKG}/build/$${PATRONA_OS}/QtCreator/$${BUILD_CONFIG}
+ROSTRA_LIB = $${ROSTRA_BLD}/lib
+
+rostra_LIBS += \
+-L$${ROSTRA_LIB}/librostra \
+-lrostra \
+
+########################################################################
+# nadir
+NADIR_BLD = $${OTHER_BLD}/$${NADIR_PKG}/build/$${PATRONA_OS}/QtCreator/$${BUILD_CONFIG}
+NADIR_LIB = $${NADIR_BLD}/lib
+
+nadir_LIBS += \
+-L$${NADIR_LIB}/libnadir \
+-lnadir \
+
+########################################################################
+# patrona
 patrona_INCLUDEPATH += \
 
 patrona_DEFINES += \
 
 ########################################################################
 patrona_LIBS += \
+$${nadir_LIBS} \
+$${rostra_LIBS} \
+$${build_patrona_LIBS} \
 -lpthread \
 -ldl \

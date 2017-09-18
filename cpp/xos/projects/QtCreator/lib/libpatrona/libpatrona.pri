@@ -19,10 +19,14 @@
 #   Date: 8/2/2017
 ########################################################################
 
+libpatrona_TARGET = patrona
+
+########################################################################
 libpatrona_INCLUDEPATH += \
 $${patrona_INCLUDEPATH} \
 
 libpatrona_DEFINES += \
+$${patrona_DEFINES} \
 
 ########################################################################
 # base
@@ -31,4 +35,3 @@ $${NADIR_SRC}/xos/base/Base.hpp \
 
 libpatrona_SOURCES += \
 $${NADIR_SRC}/xos/base/Base.cpp \
-
