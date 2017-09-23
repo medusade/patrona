@@ -127,7 +127,7 @@ template
  typename TUnattached = TAttached, TUnattached VUnattached = 0,
  class TException = AttachException,
  class TImplements = AttachT
- <TAttached, TUnattached, VUnattached, AttachTImplements>,
+ <TAttached, TUnattached, VUnattached, TException, AttachTImplements>,
  class TExtends = AttachedTExtends>
 
 class _EXPORT_CLASS AttachedT: virtual public TImplements, public TExtends {
