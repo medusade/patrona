@@ -85,25 +85,39 @@ class _EXPORT_CLASS OpenT: virtual public TImplements {
 public:
     typedef TImplements Implements;
     typedef TException OpenException;
+
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual bool Open() { return false; }
-    virtual bool Close() { return false; }
+    virtual bool Open() {
+        return false;
+    }
+    virtual bool Close() {
+        return false;
+    }
     virtual bool Opened() {
         if (!(this->IsOpen())) {
             return this->Open();
         }
-        return true; }
+        return true;
+    }
     virtual bool Closed() {
         if ((this->IsOpen())) {
             return this->Close();
         }
-        return true; }
+        return true;
+    }
+
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    virtual bool SetIsOpen(bool to = true) { return this->IsOpen(); }
-    virtual bool IsOpen() const { return false; }
-    virtual bool IsClosed() const { return !this->IsOpen(); }
+    virtual bool SetIsOpen(bool to = true) {
+        return this->IsOpen();
+    }
+    virtual bool IsOpen() const {
+        return false;
+    }
+    virtual bool IsClosed() const {
+        return !this->IsOpen();
+    }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 };
@@ -118,19 +132,22 @@ template
 <typename TAttached,
  typename TUnattached = TAttached, TUnattached VUnattached = 0,
  class TException = OpenException,
- class TImplements = AttachT
-  <TAttached, TUnattached, VUnattached, OpenedTImplements>,
- class TExtends = AttachedT
- <TAttached, TUnattached, VUnattached, TImplements, OpenedTExtends> >
+ class TImplement = AttachT
+  <TAttached, TUnattached, VUnattached, AttachException, OpenedTImplements>,
+ class TExtend = AttachedT
+ <TAttached, TUnattached, VUnattached, AttachException, TImplement, OpenedTExtends>,
+ class TImplements = TImplement, class TExtends = TExtend>
 
 class _EXPORT_CLASS OpenedT: virtual public TImplements, public TExtends {
 public:
     typedef TImplements Implements;
     typedef TExtends Extends;
+
     typedef TException OpenException;
     typedef TAttached Attached;
     typedef TUnattached Unattached_t;
     static const Unattached_t Unattached = VUnattached;
+
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     OpenedT(Attached attachedTo, bool isOpen)
@@ -151,6 +168,7 @@ public:
             throw (e);
         }
     }
+
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     virtual bool Open() {
@@ -170,6 +188,7 @@ public:
         }
         return false;
     }
+
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     virtual Attached OpenAttached() {
@@ -190,6 +209,7 @@ public:
         }
         return false;
     }
+
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     virtual Attached AttachOpened
@@ -204,6 +224,7 @@ public:
         this->SetIsOpen(false);
         return detached;
     }
+
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     virtual Attached Attach(Attached attachedTo) {
@@ -216,6 +237,7 @@ public:
         this->SetIsOpen(false);
         return detached;
     }
+
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     virtual bool SetIsOpen(bool to = true) {
