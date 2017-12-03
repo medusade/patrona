@@ -136,7 +136,8 @@ public:
     typedef TExtends Extends;
     typedef TException AttachException;
     typedef TAttached Attached;
-    static const TUnattached Unattached = VUnattached;
+    typedef TUnattached Unattached_t;
+    static const Unattached_t Unattached = VUnattached;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
     AttachedT(Attached attachedTo): m_attachedTo(attachedTo) {
