@@ -25,21 +25,61 @@
 
 #if defined(USE_CRONO_LOGGER)
 #include "crono/io/Logger.hpp"
-#else // defined(USE_CRONO_LOGGER)
 #define PATRONA_LOG_ERROR CRONO_LOG_ERROR
 #define PATRONA_LOG_DEBUG CRONO_LOG_DEBUG
 #define PATRONA_LOG_TRACE CRONO_LOG_TRACE
+#define PATRONA_ERR_LOG_ERROR CRONO_ERR_LOG_ERROR
+#define PATRONA_ERR_LOG_DEBUG CRONO_ERR_LOG_DEBUG
+#define PATRONA_ERR_LOG_TRACE CRONO_ERR_LOG_TRACE
+#else // defined(USE_CRONO_LOGGER)
 #if defined(USE_NADIR_LOGGER)
 #include "nadir/io/Logger.hpp"
 #define PATRONA_LOG_ERROR NADIR_LOG_ERROR
 #define PATRONA_LOG_DEBUG NADIR_LOG_DEBUG
 #define PATRONA_LOG_TRACE NADIR_LOG_TRACE
+#define PATRONA_ERR_LOG_ERROR NADIR_ERR_LOG_ERROR
+#define PATRONA_ERR_LOG_DEBUG NADIR_ERR_LOG_DEBUG
+#define PATRONA_ERR_LOG_TRACE NADIR_ERR_LOG_TRACE
 #else // defined(USE_NADIR_LOGGER)
 #define PATRONA_LOG_ERROR(...)
 #define PATRONA_LOG_DEBUG(...)
 #define PATRONA_LOG_TRACE(...)
+#define PATRONA_ERR_LOG_ERROR(...)
+#define PATRONA_ERR_LOG_DEBUG(...)
+#define PATRONA_ERR_LOG_TRACE(...)
 #endif // defined(USE_NADIR_LOGGER)
 #endif // defined(USE_CRONO_LOGGER)
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+#if !defined(LOG_ERROR)
+#define LOG_ERROR PATRONA_LOG_ERROR
+#endif // !defined(LOG_ERROR)
+
+#if !defined(LOG_DEBUG)
+#define LOG_DEBUG PATRONA_LOG_DEBUG
+#endif // !defined(LOG_DEBUG)
+
+#if !defined(LOG_TRACE)
+#define LOG_TRACE PATRONA_LOG_TRACE
+#endif // !defined(LOG_TRACE)
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+#if !defined(ERR_LOG_ERROR)
+#define ERR_LOG_ERROR PATRONA_ERR_LOG_ERROR
+#endif // !defined(ERR_LOG_ERROR)
+
+#if !defined(ERR_LOG_DEBUG)
+#define ERR_LOG_DEBUG PATRONA_ERR_LOG_DEBUG
+#endif // !defined(ERR_LOG_DEBUG)
+
+#if !defined(ERR_LOG_TRACE)
+#define ERR_LOG_TRACE PATRONA_ERR_LOG_TRACE
+#endif // !defined(ERR_LOG_TRACE)
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 namespace patrona {
 namespace io {
