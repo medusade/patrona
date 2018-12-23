@@ -48,7 +48,7 @@ $${libpatrona_OBJECTIVE_HEADERS} \
 
 # OBJECTIVE_SOURCES
 #
-SOURCES += \
+OBJECTIVE_SOURCES += \
 $${libpatrona_OBJECTIVE_SOURCES} \
 
 ########################################################################
@@ -56,12 +56,12 @@ $${libpatrona_OBJECTIVE_SOURCES} \
 #
 HEADERS += \
 $${libpatrona_HEADERS} \
+$${OBJECTIVE_HEADERS} \
 
 # SOURCES
 #
 SOURCES += \
 $${libpatrona_SOURCES} \
-$${OBJECTIVE_SOURCES} \
 
 ########################################################################
 

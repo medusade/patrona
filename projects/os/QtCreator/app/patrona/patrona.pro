@@ -46,7 +46,7 @@ $${patrona_exe_OBJECTIVE_HEADERS} \
 
 # OBJECTIVE_SOURCES
 #
-SOURCES += \
+OBJECTIVE_SOURCES += \
 $${patrona_exe_OBJECTIVE_SOURCES} \
 
 ########################################################################
@@ -54,12 +54,12 @@ $${patrona_exe_OBJECTIVE_SOURCES} \
 #
 HEADERS += \
 $${patrona_exe_HEADERS} \
+$${OBJECTIVE_HEADERS} \
 
 # SOURCES
 #
 SOURCES += \
 $${patrona_exe_SOURCES} \
-$${OBJECTIVE_SOURCES} \
 
 ########################################################################
 # FRAMEWORKS

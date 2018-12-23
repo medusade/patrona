@@ -16,7 +16,7 @@
 #   File: patrona.pri
 #
 # Author: $author$
-#   Date: 3/23/2018
+#   Date: 12/22/2018
 #
 # Os QtCreator .pri file for patrona
 ########################################################################
@@ -76,6 +76,28 @@ nadir_LIBS += \
 -l$${NADIR_NAME} \
 
 ########################################################################
+# crono
+CRONO_THIRDPARTY_PKG_MAKE_BLD = $${CRONO_THIRDPARTY_PKG}/build/$${PATRONA_OS}/$${BUILD_CONFIG}
+CRONO_THIRDPARTY_PRJ_MAKE_BLD = $${CRONO_THIRDPARTY_PRJ}/build/$${PATRONA_OS}/$${BUILD_CONFIG}
+CRONO_THIRDPARTY_PKG_BLD = $${CRONO_THIRDPARTY_PKG}/build/$${PATRONA_OS}/QtCreator/$${BUILD_CONFIG}
+CRONO_THIRDPARTY_PRJ_BLD = $${CRONO_THIRDPARTY_PRJ}/build/$${PATRONA_OS}/QtCreator/$${BUILD_CONFIG}
+CRONO_PKG_BLD = $${OTHER_BLD}/$${CRONO_PKG}/build/$${PATRONA_OS}/QtCreator/$${BUILD_CONFIG}
+CRONO_PRJ_BLD = $${OTHER_BLD}/$${CRONO_PRJ}/build/$${PATRONA_OS}/QtCreator/$${BUILD_CONFIG}
+#CRONO_LIB = $${CRONO_THIRDPARTY_PKG_MAKE_BLD}/lib
+#CRONO_LIB = $${CRONO_THIRDPARTY_PRJ_MAKE_BLD}/lib
+#CRONO_LIB = $${CRONO_THIRDPARTY_PKG_BLD}/lib
+#CRONO_LIB = $${CRONO_THIRDPARTY_PRJ_BLD}/lib
+#CRONO_LIB = $${CRONO_PKG_BLD}/lib
+CRONO_LIB = $${CRONO_PRJ_BLD}/lib
+#CRONO_LIB = $${PATRONA_LIB}
+
+# crono LIBS
+#
+crono_LIBS += \
+-L$${CRONO_LIB}/lib$${CRONO_NAME} \
+-l$${CRONO_NAME} \
+
+########################################################################
 # patrona
 
 # patrona INCLUDEPATH
@@ -100,4 +122,3 @@ patrona_LIBS += \
 -lrt
 } else {
 }
-

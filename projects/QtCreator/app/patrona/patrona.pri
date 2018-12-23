@@ -54,12 +54,14 @@ USE_NADIR_LOGGER \
 # patrona_exe HEADERS
 #
 patrona_exe_HEADERS += \
-$${PATRONA_SRC}/patrona/cpp/xos/console/Main_main.hpp \
+$${PATRONA_SRC}/patrona/console/Main_main.hpp \
+$${PATRONA_SRC}/patrona/app/console/patrona/Main.hpp \
 
 # patrona_exe SOURCES
 #
 patrona_exe_SOURCES += \
-$${PATRONA_SRC}/patrona/cpp/xos/console/Main_main.cpp \
+$${PATRONA_SRC}/patrona/console/Main_main.cpp \
+$${PATRONA_SRC}/patrona/app/console/patrona/Main.cpp \
 
 ########################################################################
 # patrona_exe FRAMEWORKS

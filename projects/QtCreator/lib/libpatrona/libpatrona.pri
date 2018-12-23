@@ -55,66 +55,71 @@ $${patrona_DEFINES} \
 # libpatrona HEADERS
 #
 libpatrona_HEADERS += \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Acquired.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Array.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Attached.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Base.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Chars.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Created.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Joined.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Locked.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Opened.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Sleep.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/String.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Waited.hpp \
+$${PATRONA_SRC}/patrona/base/Acquired.hpp \
+$${PATRONA_SRC}/patrona/base/Array.hpp \
+$${PATRONA_SRC}/patrona/base/Attached.hpp \
+$${PATRONA_SRC}/patrona/base/Base.hpp \
+$${PATRONA_SRC}/patrona/base/Chars.hpp \
+$${PATRONA_SRC}/patrona/base/Created.hpp \
+$${PATRONA_SRC}/patrona/base/Joined.hpp \
+$${PATRONA_SRC}/patrona/base/Locked.hpp \
+$${PATRONA_SRC}/patrona/base/Opened.hpp \
+$${PATRONA_SRC}/patrona/base/Sleep.hpp \
+$${PATRONA_SRC}/patrona/base/String.hpp \
+$${PATRONA_SRC}/patrona/base/Waited.hpp \
 \
-$${PATRONA_SRC}/patrona/cpp/xos/io/apple/osx/crt/file/Attached.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/crt/file/Attached.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/crt/file/Mode.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/crt/file/Reader.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/crt/file/Stream.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/crt/file/Writer.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/crt/Stream.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/Logger.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/microsoft/windows/crt/file/Attached.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/os/crt/file/Attached.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/os/Os.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/posix/crt/file/Attached.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/Reader.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/Stream.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/Writer.hpp \
+$${PATRONA_SRC}/patrona/io/apple/osx/crt/file/Attached.hpp \
+$${PATRONA_SRC}/patrona/io/crt/file/Attached.hpp \
+$${PATRONA_SRC}/patrona/io/crt/file/Mode.hpp \
+$${PATRONA_SRC}/patrona/io/crt/file/Reader.hpp \
+$${PATRONA_SRC}/patrona/io/crt/file/Stream.hpp \
+$${PATRONA_SRC}/patrona/io/crt/file/Writer.hpp \
+$${PATRONA_SRC}/patrona/io/crt/Stream.hpp \
+$${PATRONA_SRC}/patrona/io/Logger.hpp \
+$${PATRONA_SRC}/patrona/io/microsoft/windows/crt/file/Attached.hpp \
+$${PATRONA_SRC}/patrona/io/os/crt/file/Attached.hpp \
+$${PATRONA_SRC}/patrona/io/os/Os.hpp \
+$${PATRONA_SRC}/patrona/io/posix/crt/file/Attached.hpp \
+$${PATRONA_SRC}/patrona/io/Reader.hpp \
+$${PATRONA_SRC}/patrona/io/Stream.hpp \
+$${PATRONA_SRC}/patrona/io/Writer.hpp \
 \
-$${PATRONA_SRC}/patrona/cpp/xos/console/Argv.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/console/getopt/Main.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/console/getopt/MainOpt.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/console/IO.hpp \
-$${PATRONA_SRC}/patrona/cpp/xos/console/Main.hpp \
+$${PATRONA_SRC}/patrona/console/Argv.hpp \
+$${PATRONA_SRC}/patrona/console/getopt/Main.hpp \
+$${PATRONA_SRC}/patrona/console/getopt/MainOpt.hpp \
+$${PATRONA_SRC}/patrona/console/IO.hpp \
+$${PATRONA_SRC}/patrona/console/Main.hpp \
+\
+$${PATRONA_SRC}/patrona/lib/Version.hpp \
+$${PATRONA_SRC}/patrona/lib/patrona/Version.hpp \
 
 # libpatrona SOURCES
 #
 libpatrona_SOURCES += \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Acquired.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Array.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Attached.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Base.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Chars.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Created.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Joined.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Locked.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Opened.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Sleep.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/String.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/base/Waited.cpp \
+$${PATRONA_SRC}/patrona/base/Acquired.cpp \
+$${PATRONA_SRC}/patrona/base/Array.cpp \
+$${PATRONA_SRC}/patrona/base/Attached.cpp \
+$${PATRONA_SRC}/patrona/base/Base.cpp \
+$${PATRONA_SRC}/patrona/base/Chars.cpp \
+$${PATRONA_SRC}/patrona/base/Created.cpp \
+$${PATRONA_SRC}/patrona/base/Joined.cpp \
+$${PATRONA_SRC}/patrona/base/Locked.cpp \
+$${PATRONA_SRC}/patrona/base/Opened.cpp \
+$${PATRONA_SRC}/patrona/base/Sleep.cpp \
+$${PATRONA_SRC}/patrona/base/String.cpp \
+$${PATRONA_SRC}/patrona/base/Waited.cpp \
 \
-$${PATRONA_SRC}/patrona/cpp/xos/io/crt/file/Mode.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/crt/file/Reader.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/crt/file/Stream.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/crt/file/Writer.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/io/Logger.cpp \
+$${PATRONA_SRC}/patrona/io/crt/file/Mode.cpp \
+$${PATRONA_SRC}/patrona/io/crt/file/Reader.cpp \
+$${PATRONA_SRC}/patrona/io/crt/file/Stream.cpp \
+$${PATRONA_SRC}/patrona/io/crt/file/Writer.cpp \
+$${PATRONA_SRC}/patrona/io/Logger.cpp \
 \
-$${PATRONA_SRC}/patrona/cpp/xos/console/Argv.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/console/getopt/Main.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/console/getopt/MainOpt.cpp \
-$${PATRONA_SRC}/patrona/cpp/xos/console/IO.cpp \
+$${PATRONA_SRC}/patrona/console/Argv.cpp \
+$${PATRONA_SRC}/patrona/console/getopt/Main.cpp \
+$${PATRONA_SRC}/patrona/console/getopt/MainOpt.cpp \
+$${PATRONA_SRC}/patrona/console/IO.cpp \
+\
+$${PATRONA_SRC}/patrona/lib/patrona/Version.cpp \
 
 ########################################################################
