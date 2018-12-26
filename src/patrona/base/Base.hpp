@@ -95,17 +95,213 @@ inline nseconds_t mseconds_nseconds
 typedef implement_base ImplementBase;
 typedef base Base;
 
-typedef char_array CharArray;
-typedef tchar_array TCharArray;
-typedef wchar_array WCharArray;
+///////////////////////////////////////////////////////////////////////
+///  Class: arrayt
+///////////////////////////////////////////////////////////////////////
+template <class TExtends>
+class _EXPORT_CLASS arrayt: public TExtends {
+public:
+    typedef TExtends Extends;
+    typedef typename Extends::what_t what_t;
+    typedef typename Extends::size_t size_t;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    arrayt(const what_t* elements, size_t length): Extends(elements, length) {
+    }
+    arrayt(ssize_t length): Extends(length) {
+    }
+    arrayt(const arrayt& copy): Extends(copy) {
+    }
+    arrayt() {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+}; /// class _EXPORT_CLASS arrayt
 
-typedef char_string String;
-typedef tchar_string TString;
-typedef wchar_string WString;
+typedef arrayt<char_array> CharArray;
+typedef arrayt<tchar_array> TCharArray;
+typedef arrayt<wchar_array> WCharArray;
 
-typedef chars_to_string CharsToString;
-typedef chars_to_tstring CharsToTString;
-typedef chars_to_wstring CharsToWString;
+///////////////////////////////////////////////////////////////////////
+///  Class: char_stringt
+///////////////////////////////////////////////////////////////////////
+template <class TExtends>
+class _EXPORT_CLASS char_stringt: public TExtends {
+public:
+    typedef TExtends Extends;
+    typedef typename Extends::char_t char_t;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    char_stringt(const char* chars): Extends(chars) {
+    }
+    char_stringt(const char* chars, size_t length): Extends(chars, length) {
+    }
+    char_stringt(const wchar_t* chars): Extends(chars) {
+    }
+    char_stringt(const wchar_t* chars, size_t length): Extends(chars, length) {
+    }
+    char_stringt(const unsigned_t& c): Extends(c) {
+    }
+    char_stringt(const signed_t& c): Extends(c) {
+    }
+    char_stringt(const bool& c): Extends(c) {
+    }
+    char_stringt(const Extends& copy): Extends(copy) {
+    }
+    char_stringt(const char_stringt& copy): Extends(copy) {
+    }
+    char_stringt() {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual const char_t* HasChars(size_t& length) const {
+        return this->has_chars(length);
+    }
+    virtual const char_t* HasChars() const {
+        return this->has_chars();
+    }
+    virtual const char_t* Chars(size_t& length) const {
+        return this->chars(length);
+    }
+    virtual const char_t* Chars() const {
+        return this->chars();
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    virtual TExtends& append_bool(const bool& c) {
+        this->append((c)?("true"):("false"));
+        return *this;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+}; /// class _EXPORT_CLASS char_stringt
+
+typedef char_stringt<char_string> String;
+typedef char_stringt<tchar_string> TString;
+typedef char_stringt<wchar_string> WString;
+
+///////////////////////////////////////////////////////////////////////
+///  Class: chars_to_stringt
+///////////////////////////////////////////////////////////////////////
+template 
+<typename TChar, class TString, 
+ class TExtends = ::nadir::chars_to_stringt<TChar, TString> >
+class _EXPORT_CLASS chars_to_stringt: public TExtends {
+public:
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    chars_to_stringt(const char* chars): Extends(chars) {
+    }
+    chars_to_stringt(const wchar_t* chars): Extends(chars) {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+}; /// class _EXPORT_CLASS chars_to_stringt
+
+typedef chars_to_stringt<char,String> CharsToString;
+typedef chars_to_stringt<tchar_t,TString> CharsToTString;
+typedef chars_to_stringt<wchar_t,WString> CharsToWString;
+
+///////////////////////////////////////////////////////////////////////
+///  Class: bool_to_stringt
+///////////////////////////////////////////////////////////////////////
+template 
+<typename TChar, class TString, 
+ class TExtends = ::nadir::bool_to_stringt<TChar, TString> >
+class _EXPORT_CLASS bool_to_stringt: public TExtends {
+public:
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    bool_to_stringt(const bool& to): Extends(to) {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+};
+typedef bool_to_stringt<char,String> BoolToString;
+typedef bool_to_stringt<tchar_t,TString> BoolToTString;
+typedef bool_to_stringt<wchar_t,WString> BoolToSWtring;
+
+///////////////////////////////////////////////////////////////////////
+///  Class: int_to_stringt
+///////////////////////////////////////////////////////////////////////
+template 
+<typename TChar, class TString, 
+ class TExtends = ::nadir::int_to_stringt<TChar, TString> >
+class _EXPORT_CLASS int_to_stringt: public TExtends {
+public:
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    int_to_stringt(const int& to): Extends(to) {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+};
+typedef int_to_stringt<char,String> IntToString;
+typedef int_to_stringt<tchar_t,TString> IntToTString;
+typedef int_to_stringt<wchar_t,WString> IntToSWtring;
+
+///////////////////////////////////////////////////////////////////////
+///  Class: signed_to_stringt
+///////////////////////////////////////////////////////////////////////
+template 
+<typename TChar, class TString, 
+ class TExtends = ::nadir::signed_to_stringt<TChar, TString> >
+class _EXPORT_CLASS signed_to_stringt: public TExtends {
+public:
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    signed_to_stringt(const signed& to): Extends(to) {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+};
+typedef signed_to_stringt<char,String> SignedToString;
+typedef signed_to_stringt<tchar_t,TString> SignedToTString;
+typedef signed_to_stringt<wchar_t,WString> SignedToSWtring;
+
+///////////////////////////////////////////////////////////////////////
+///  Class: unsigned_to_stringt
+///////////////////////////////////////////////////////////////////////
+template 
+<typename TChar, class TString, 
+ class TExtends = ::nadir::unsigned_to_stringt<TChar, TString> >
+class _EXPORT_CLASS unsigned_to_stringt: public TExtends {
+public:
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    unsigned_to_stringt(const unsigned& to): Extends(to) {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+};
+typedef unsigned_to_stringt<char,String> UnsignedToString;
+typedef unsigned_to_stringt<tchar_t,TString> UnsignedToTString;
+typedef unsigned_to_stringt<wchar_t,WString> UnsignedToSWtring;
+
+///////////////////////////////////////////////////////////////////////
+///  Class: pointer_to_stringt
+///////////////////////////////////////////////////////////////////////
+template 
+<typename TChar, class TString, 
+ class TExtends = ::nadir::pointer_to_stringt<TChar, TString> >
+class _EXPORT_CLASS pointer_to_stringt: public TExtends {
+public:
+    typedef TExtends Extends;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+    pointer_to_stringt(const pointer_t to): Extends(to) {
+    }
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+};
+typedef pointer_to_stringt<char,String> PointerToString;
+typedef pointer_to_stringt<tchar_t,TString> PointerToTString;
+typedef pointer_to_stringt<wchar_t,WString> PointerToSWtring;
 
 } // namespace patrona
 

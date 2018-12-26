@@ -57,7 +57,7 @@ protected:
     virtual int Run(int argc, char_t**argv, char_t** env) {
         const ::patrona::lib::Version& version = ::patrona::lib::patrona::Version::Which();
         int err = 0;
-        this->OutL(version.Name(), " version = ", version.ToString().chars(), NULL);
+        this->OutL(version.Name(), " version = ", version.ToString().Chars(), NULL);
         this->OutLn();
         return err;
     }
