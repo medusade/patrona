@@ -83,6 +83,7 @@ $${PATRONA_SRC}/patrona/io/posix/crt/file/Attached.hpp \
 $${PATRONA_SRC}/patrona/io/Reader.hpp \
 $${PATRONA_SRC}/patrona/io/Stream.hpp \
 $${PATRONA_SRC}/patrona/io/Writer.hpp \
+$${PATRONA_SRC}/patrona/io/Writers.hpp \
 \
 $${PATRONA_SRC}/patrona/console/Argv.hpp \
 $${PATRONA_SRC}/patrona/console/getopt/Main.hpp \
@@ -113,6 +114,7 @@ $${PATRONA_SRC}/patrona/io/crt/file/Mode.cpp \
 $${PATRONA_SRC}/patrona/io/crt/file/Reader.cpp \
 $${PATRONA_SRC}/patrona/io/crt/file/Stream.cpp \
 $${PATRONA_SRC}/patrona/io/crt/file/Writer.cpp \
+$${PATRONA_SRC}/patrona/io/Writers.cpp \
 $${PATRONA_SRC}/patrona/io/Logger.cpp \
 \
 $${PATRONA_SRC}/patrona/console/Argv.cpp \

@@ -55,6 +55,7 @@ USE_NADIR_LOGGER \
 #
 patrona_exe_HEADERS += \
 $${PATRONA_SRC}/patrona/console/Main_main.hpp \
+$${PATRONA_SRC}/patrona/console/lib/version/Main.hpp \
 $${PATRONA_SRC}/patrona/app/console/patrona/Main.hpp \
 
 # patrona_exe SOURCES
