@@ -21,16 +21,16 @@
 #ifndef _PATRONA_APP_CONSOLE_PATRONA_MAIN_HPP
 #define _PATRONA_APP_CONSOLE_PATRONA_MAIN_HPP
 
-#include "patrona/console/getopt/Main.hpp"
-#include "patrona/lib/patrona/Version.hpp"
+#include "patrona/console/lib/version/Main.hpp"
 
 namespace patrona {
 namespace app {
 namespace console {
 namespace patrona {
 
-typedef ::patrona::console::getopt::Main::Implements MainTImplements;
-typedef ::patrona::console::getopt::Main MainTExtends;
+typedef ::patrona::lib::patrona::Version MainTVersion;
+typedef ::patrona::console::lib::version::MainT<MainTVersion> MainTExtends;
+typedef MainTExtends::Implements MainTImplements;
 ///////////////////////////////////////////////////////////////////////
 ///  Class: MainT
 ///////////////////////////////////////////////////////////////////////
@@ -50,16 +50,8 @@ public:
     }
     virtual ~MainT() {
     }
-
-protected:
-    ///////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////
-    virtual int Run(int argc, char_t**argv, char_t** env) {
-        const ::patrona::lib::Version& version = ::patrona::lib::patrona::Version::Which();
-        int err = 0;
-        this->OutL(version.Name(), " version = ", version.ToString().Chars(), NULL);
-        this->OutLn();
-        return err;
+private:
+    MainT(const MainT& copy) {
     }
 
     ///////////////////////////////////////////////////////////////////////

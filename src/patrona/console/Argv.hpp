@@ -150,7 +150,7 @@ public:
     typedef TChar char_t;
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    ArgvWriterT(Writer& writer): m_writer(writer) {
+    ArgvWriterT(Writer& writer): cr_((char_t)'\r'), lf_((char_t)'\n'), m_writer(writer) {
     }
     virtual ~ArgvWriterT() {
     }
@@ -185,8 +185,8 @@ public:
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
 protected:
-    const char_t cr_ = ((char_t)'\r');
-    const char_t lf_ = ((char_t)'\n');
+    /*static*/ const char_t cr_/* = ((char_t)'\r')*/;
+    /*static*/ const char_t lf_/* = ((char_t)'\n')*/;
     Writer& m_writer;
 };
 typedef ArgvWriterT<char> ArgvWriter;

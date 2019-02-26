@@ -21,7 +21,7 @@
 #include "patrona/lib/patrona/Version.hpp"
 
 #if !defined(PATRONA_LIB_PATRONA_VERSION_NAME)
-#define PATRONA_LIB_PATRONA_VERSION_NAME "patrona"
+#define PATRONA_LIB_PATRONA_VERSION_NAME "libpatrona"
 #endif /// !defined(PATRONA_LIB_PATRONA_VERSION_NAME)
 
 #if !defined(PATRONA_LIB_PATRONA_VERSION_MAJOR)

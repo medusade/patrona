@@ -26,7 +26,20 @@
 namespace patrona {
 namespace io {
 
-typedef ImplementBase WriterTImplements;
+///////////////////////////////////////////////////////////////////////
+///  Class: WriterBase
+///////////////////////////////////////////////////////////////////////
+class _EXPORT_CLASS WriterBase: virtual public ImplementBase {
+public:
+    typedef ImplementBase Implements;
+    ///////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////
+protected:
+    static const char cr_;
+    static const char lf_;
+};
+
+typedef WriterBase WriterTImplements;
 ///////////////////////////////////////////////////////////////////////
 ///  Class: WriterT
 ///////////////////////////////////////////////////////////////////////
@@ -112,9 +125,9 @@ public:
     }
     virtual ssize_t WriteLn() {
         ssize_t count = 0, amount = 0;
-        if (0 < (amount = this->Write(&cr_, 1))) {
+        if (0 < (amount = this->Write(&this->cr_, 1))) {
             count += amount;
-            if (0 < (amount = this->Write(&lf_, 1))) {
+            if (0 < (amount = this->Write(&this->lf_, 1))) {
                 count += amount;
             } else {
                 return amount;
@@ -126,9 +139,6 @@ public:
     }
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-protected:
-    const char cr_ = '\r';
-    const char lf_ = '\n';
 };
 typedef CharWriterT<char, void> CharWriter;
 typedef CharWriterT<wchar_t, void> WCharWriter;

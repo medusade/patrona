@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2018 $organization$
+/// Copyright (c) 1988-2019 $organization$
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -13,21 +13,24 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: Writer.cpp
+///   File: Main.cpp
 ///
 /// Author: $author$
-///   Date: 12/22/2018
+///   Date: 2/24/2019
 ///////////////////////////////////////////////////////////////////////
-#include "patrona/io/Writer.hpp"
+#include "patrona/console/lib/version/Main.hpp"
 
 namespace patrona {
-namespace io {
+namespace console {
+namespace lib {
+namespace version {
 
 ///////////////////////////////////////////////////////////////////////
-///  Class: WriterBase
+///  Class: MainT
 ///////////////////////////////////////////////////////////////////////
-const char WriterBase::cr_ = '\r';
-const char WriterBase::lf_ = '\n';
 
-} // namespace io
-} // namespace patrona
+} /// namespace version
+} /// namespace lib
+} /// namespace console
+} /// namespace patrona
+
