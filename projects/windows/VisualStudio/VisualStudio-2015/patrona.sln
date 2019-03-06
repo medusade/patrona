@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{A3AD7219-4B5E-4172-9227-ADA93C53790F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{A6D9AC3A-4018-4528-AAC6-74ABDAA20C37}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "properties", "properties", "{85696315-769D-419A-8B80-7FE616C29050}"
+	ProjectSection(SolutionItems) = preProject
+		..\nadir.props = ..\nadir.props
+		..\patrona.props = ..\patrona.props
+		..\rostra.props = ..\rostra.props
+		..\vcproj.props = ..\vcproj.props
+		vcversion.props = vcversion.props
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libpatrona", "libpatrona\libpatrona.vcxproj", "{DFB6750C-CF66-4F96-A0E2-5DA7E885C0DF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "patrona", "patrona\patrona.vcxproj", "{AD026C92-20EC-4487-8C90-AEEBAC210505}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DFB6750C-CF66-4F96-A0E2-5DA7E885C0DF} = {DFB6750C-CF66-4F96-A0E2-5DA7E885C0DF}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFB6750C-CF66-4F96-A0E2-5DA7E885C0DF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DFB6750C-CF66-4F96-A0E2-5DA7E885C0DF}.Debug|Win32.Build.0 = Debug|Win32
+		{DFB6750C-CF66-4F96-A0E2-5DA7E885C0DF}.Debug|x64.ActiveCfg = Debug|x64
+		{DFB6750C-CF66-4F96-A0E2-5DA7E885C0DF}.Debug|x64.Build.0 = Debug|x64
+		{DFB6750C-CF66-4F96-A0E2-5DA7E885C0DF}.Release|Win32.ActiveCfg = Release|Win32
+		{DFB6750C-CF66-4F96-A0E2-5DA7E885C0DF}.Release|Win32.Build.0 = Release|Win32
+		{DFB6750C-CF66-4F96-A0E2-5DA7E885C0DF}.Release|x64.ActiveCfg = Release|x64
+		{DFB6750C-CF66-4F96-A0E2-5DA7E885C0DF}.Release|x64.Build.0 = Release|x64
+		{AD026C92-20EC-4487-8C90-AEEBAC210505}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AD026C92-20EC-4487-8C90-AEEBAC210505}.Debug|Win32.Build.0 = Debug|Win32
+		{AD026C92-20EC-4487-8C90-AEEBAC210505}.Debug|x64.ActiveCfg = Debug|x64
+		{AD026C92-20EC-4487-8C90-AEEBAC210505}.Debug|x64.Build.0 = Debug|x64
+		{AD026C92-20EC-4487-8C90-AEEBAC210505}.Release|Win32.ActiveCfg = Release|Win32
+		{AD026C92-20EC-4487-8C90-AEEBAC210505}.Release|Win32.Build.0 = Release|Win32
+		{AD026C92-20EC-4487-8C90-AEEBAC210505}.Release|x64.ActiveCfg = Release|x64
+		{AD026C92-20EC-4487-8C90-AEEBAC210505}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AD026C92-20EC-4487-8C90-AEEBAC210505} = {A3AD7219-4B5E-4172-9227-ADA93C53790F}
+		{DFB6750C-CF66-4F96-A0E2-5DA7E885C0DF} = {A6D9AC3A-4018-4528-AAC6-74ABDAA20C37}
+	EndGlobalSection
+EndGlobal
