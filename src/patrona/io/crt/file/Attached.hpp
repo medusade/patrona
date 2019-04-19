@@ -43,11 +43,11 @@ class _EXPORT_CLASS AttachedT: virtual public TImplements, public TExtends {
 public:
     typedef TImplements Implements;
     typedef TExtends Extends;
-    typedef TAttachedTo AttachedTo;
+    typedef TAttachedTo Attached;
 
     ///////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////
-    AttachedT(AttachedTo attachedTo = 0): Extends(attachedTo) {
+    AttachedT(Attached detached = 0): Extends(detached) {
     }
     AttachedT(const AttachedT& copy): Extends(copy) {
     }

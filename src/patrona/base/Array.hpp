@@ -53,7 +53,7 @@ public:
     }
     ArrayT(const ArrayT& copy)
     : m_elements(m_sized), m_size(VSize), m_length(0) {
-        Append(copy.elements(), copy.length());
+        Append(copy.Elements(), copy.Length());
     }
     ArrayT()
     : m_elements(m_sized), m_size(VSize), m_length(0) {
