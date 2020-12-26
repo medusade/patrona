@@ -16,7 +16,7 @@
 #   File: libpatrona.pri
 #
 # Author: $author$
-#   Date: 3/23/2018
+#   Date: 3/23/2018, 12/26/2020
 #
 # QtCreator .pri file for patrona library libpatrona
 ########################################################################
@@ -39,6 +39,7 @@ $${patrona_INCLUDEPATH} \
 #
 libpatrona_DEFINES += \
 $${patrona_DEFINES} \
+XOS_DEFAULT_LOG_ERROR \
 
 ########################################################################
 # libpatrona OBJECTIVE_HEADERS

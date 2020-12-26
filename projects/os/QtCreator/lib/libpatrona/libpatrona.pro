@@ -16,10 +16,11 @@
 #   File: libpatrona.pro
 #
 # Author: $author$
-#   Date: 3/23/2018
+#   Date: 3/23/2018, 12/26/2020
 #
 # QtCreator .pro file for patrona library libpatrona
 ########################################################################
+include(../../../../../../build/QtCreator/patrona.pri)
 include(../../../../../build/QtCreator/patrona.pri)
 include(../../../../QtCreator/patrona.pri)
 include(../../patrona.pri)
@@ -56,7 +57,7 @@ $${libpatrona_OBJECTIVE_SOURCES} \
 #
 HEADERS += \
 $${libpatrona_HEADERS} \
-$${OBJECTIVE_HEADERS} \
+$${libpatrona_OBJECTIVE_HEADERS} \
 
 # SOURCES
 #
